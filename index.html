@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Logifact - A platform for insightful articles on various topics">
+    <title>Logifact | Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4895ef;
+            --dark-color: #1a1a2e;
+            --light-color: #f8f9fa;
+            --gray-color: #6c757d;
+            --success-color: #4cc9f0;
+            --warning-color: #f72585;
+            --font-main: 'Inter', sans-serif;
+            --max-width: 1200px;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo a {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav ul {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav a {
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background-color: var(--dark-color);
+            margin: 5px 0;
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Articles Section */
+        .articles-section {
+            padding: 4rem 0;
+        }
+
+        .articles-section h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2rem;
+            color: var(--dark-color);
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .article-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-image {
+            height: 200px;
+            background-color: #eee;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .article-content {
+            padding: 1.5rem;
+        }
+
+        .article-content h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .article-excerpt {
+            color: var(--gray-color);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--gray-color);
+        }
+
+        .article-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background-color: #e9ecef;
+            color: var(--dark-color);
+            padding: 0.2rem 0.5rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+        }
+
+        .read-more {
+            color: var(--primary-color);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray-color);
+            transition: var(--transition);
+        }
+
+        .close-btn:hover {
+            color: var(--dark-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+        }
+
+        /* Article Page Styles */
+        .article-page {
+            padding: 4rem 0;
+        }
+
+        .article-full {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .article-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .article-header h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-meta {
+            margin-bottom: 1.5rem;
+            color: var(--gray-color);
+            font-size: 0.9rem;
+        }
+
+        .article-image {
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+        }
+
+        .article-body {
+            line-height: 1.8;
+        }
+
+        .article-body p {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-actions {
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .article-not-found {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .article-not-found h2 {
+            margin-bottom: 1rem;
+        }
+
+        /* About Page Styles */
+        .about-section {
+            padding: 4rem 0;
+        }
+
+        .about-section h1 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-image .image-placeholder {
+            height: 400px;
+            background-color: #eee;
+            border-radius: var(--border-radius);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 70px);
+                background-color: white;
+                box-shadow: var(--box-shadow);
+                transition: var(--transition);
+                padding: 2rem;
+            }
+
+            .nav.active {
+                left: 0;
+            }
+
+            .nav ul {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+            }
+            
+            .article-header h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="#" id="home-link">Logifact</a>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#" id="home-nav-link">Home</a></li>
+                    <li><a href="#" id="categories-link">Categories</a></li>
+                    <li><a href="#" id="about-link">About</a></li>
+                    <li><a href="#" id="new-article-btn">New Article</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="main-content" id="main-content">
+        <!-- Content will be dynamically loaded here -->
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Logifact</h3>
+                    <p>Your platform for sharing knowledge and insights.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#" id="home-footer-link">Home</a></li>
+                        <li><a href="#" id="categories-footer-link">Categories</a></li>
+                        <li><a href="#" id="about-footer-link">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <ul class="social-links">
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Logifact. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Article Modal -->
+    <div class="modal" id="article-modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Create New Article</h2>
+            <form id="article-form">
+                <div class="form-group">
+                    <label for="article-title">Title</label>
+                    <input type="text" id="article-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="article-excerpt">Excerpt</label>
+                    <textarea id="article-excerpt" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="article-content">Content</label>
+                    <textarea id="article-content" rows="10" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="article-tags">Tags (comma separated)</label>
+                    <input type="text" id="article-tags">
+                </div>
+                <button type="submit" class="btn">Publish Article</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // State management
+        let currentPage = 'home';
+        let articles = [
+            {
+                id: 1,
+                title: 'The Future of Artificial Intelligence',
+                excerpt: 'Exploring how AI will transform industries in the next decade.',
+                content: '<p>Artificial Intelligence (AI) is rapidly transforming every sector of our economy and society. From healthcare to finance, education to transportation, AI technologies are being integrated into systems and processes at an unprecedented pace.</p><p>In healthcare, AI is helping doctors diagnose diseases earlier and more accurately. Machine learning algorithms can analyze medical images with precision that often surpasses human experts, leading to earlier detection of conditions like cancer.</p><p>The financial sector is using AI for fraud detection, risk assessment, and algorithmic trading. These applications are making financial systems more secure and efficient while reducing human error.</p><p>As we look to the future, we can expect AI to become even more integrated into our daily lives. The key will be developing these technologies responsibly, with proper ethical considerations and human oversight.</p>',
+                date: '2023-05-15',
+                tags: ['technology', 'ai', 'future'],
+                image: 'https://source.unsplash.com/random/600x400/?ai'
+            },
+            {
+                id: 2,
+                title: 'Sustainable Living in Urban Areas',
+                excerpt: 'Practical tips for reducing your carbon footprint in the city.',
+                content: '<p>Living sustainably in urban environments presents unique challenges and opportunities. While cities concentrate environmental impacts, they also offer efficiencies that can reduce per-capita resource use.</p><p>Transportation is one of the biggest areas where urban dwellers can make a difference. Opting for public transit, cycling, or walking instead of private car use can dramatically reduce your carbon footprint. Many cities now offer bike-sharing programs and have invested in cycling infrastructure.</p><p>Energy consumption in apartments can be reduced through simple measures like using LED lighting, unplugging devices when not in use, and using smart thermostats. Many utility companies now offer energy audits that can help identify additional savings.</p><p>Urban gardening is another growing trend that combines sustainability with community building. Even small balconies can support container gardens for herbs and vegetables, while community gardens provide opportunities for those without private outdoor space.</p>',
+                date: '2023-05-10',
+                tags: ['environment', 'sustainability', 'urban'],
+                image: 'https://source.unsplash.com/random/600x400/?sustainability'
+            },
+            {
+                id: 3,
+                title: 'The Psychology of Productivity',
+                excerpt: 'How understanding your mind can help you achieve more.',
+                content: '<p>Productivity isn\'t just about working harder—it\'s about working smarter by understanding how our minds function best. Psychological research has revealed several key principles that can help anyone become more productive.</p><p>The concept of "flow state," identified by psychologist Mihaly Csikszentmihalyi, describes a state of complete absorption in an activity where time seems to disappear. Creating conditions conducive to flow—clear goals, immediate feedback, and a balance between challenge and skill—can dramatically improve both productivity and satisfaction.</p><p>Our cognitive resources are finite, a phenomenon known as decision fatigue. Structuring your day to tackle the most important tasks first (a concept called "eating the frog") can lead to better results than leaving critical decisions for when your mental energy is depleted.</p><p>Understanding these psychological principles and applying them to your work habits can lead to sustainable productivity gains without burnout.</p>',
+                date: '2023-05-05',
+                tags: ['psychology', 'productivity', 'self-improvement'],
+                image: 'https://source.unsplash.com/random/600x400/?productivity'
+            }
+        ];
+
+        // DOM Elements
+        const mainContent = document.getElementById('main-content');
+        const newArticleBtn = document.getElementById('new-article-btn');
+        const articleModal = document.getElementById('article-modal');
+        const closeModalBtn = document.querySelector('.close-btn');
+        const articleForm = document.getElementById('article-form');
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('.nav');
+        const homeLink = document.getElementById('home-link');
+        const homeNavLink = document.getElementById('home-nav-link');
+        const homeFooterLink = document.getElementById('home-footer-link');
+        const aboutLink = document.getElementById('about-link');
+        const aboutFooterLink = document.getElementById('about-footer-link');
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check for saved articles in localStorage
+            const savedArticles = localStorage.getItem('logifact-articles');
+            if (savedArticles) {
+                articles = JSON.parse(savedArticles);
+            }
+            
+            // Load the home page by default
+            loadHomePage();
+            
+            // Set up event listeners
+            setupEventListeners();
+        });
+
+        // Set up all event listeners
+        function setupEventListeners() {
+            // Navigation links
+            homeLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                loadHomePage();
+            });
+            
+            homeNavLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                loadHomePage();
+            });
+            
+            homeFooterLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                loadHomePage();
+            });
+            
+            aboutLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                loadAboutPage();
+            });
+            
+            aboutFooterLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                loadAboutPage();
+            });
+            
+            // Article creation
+            newArticleBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openArticleModal();
+            });
+            
+            // Modal functionality
+            closeModalBtn.addEventListener('click', closeArticleModal);
+            
+            window.addEventListener('click', (e) => {
+                if (e.target === articleModal) {
+                    closeArticleModal();
+                }
+            });
+            
+            // Form submission
+            articleForm.addEventListener('submit', handleArticleSubmit);
+            
+            // Mobile menu toggle
+            hamburger.addEventListener('click', toggleMobileMenu);
+        }
+
+        // Load the home page
+        function loadHomePage() {
+            currentPage = 'home';
+            document.title = 'Logifact | Home';
+            
+            mainContent.innerHTML = `
+                <section class="hero">
+                    <div class="container">
+                        <h1>Share Your Thoughts with the World</h1>
+                        <p>Logifact is your platform for publishing insightful articles on topics that matter to you.</p>
+                        <a href="#" class="btn" id="start-writing-btn">Start Writing</a>
+                    </div>
+                </section>
+
+                <section class="articles-section">
+                    <div class="container">
+                        <h2>Latest Articles</h2>
+                        <div class="articles-grid" id="articles-container">
+                            <!-- Articles will be loaded here -->
+                        </div>
+                    </div>
+                </section>
+            `;
+            
+            // Add event listener to the new button
+            document.getElementById('start-writing-btn')?.addEventListener('click', (e) => {
+                e.preventDefault();
+                openArticleModal();
+            });
+            
+            // Display articles
+            displayArticles(articles);
+        }
+
+        // Load the about page
+        function loadAboutPage() {
+            currentPage = 'about';
+            document.title = 'About | Logifact';
+            
+            mainContent.innerHTML = `
+                <section class="about-section">
+                    <div class="container">
+                        <h1>About Logifact</h1>
+                        <div class="about-content">
+                            <div class="about-text">
+                                <p>Logifact was created with the vision of providing a simple, clean platform for sharing knowledge and insights on topics that matter to you.</p>
+                                <p>Our mission is to make publishing articles as straightforward as possible, removing the distractions and complexities of traditional blogging platforms.</p>
+                                <p>Whether you're an expert in your field or just passionate about a topic, Logifact gives you the tools to share your thoughts with the world.</p>
+                                <p>We believe in the power of sharing knowledge to inspire, educate, and connect people across the globe.</p>
+                            </div>
+                            <div class="about-image">
+                                <div class="image-placeholder"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        // Display articles on the home page
+        function displayArticles(articlesToDisplay) {
+            const articlesContainer = document.getElementById('articles-container');
+            if (!articlesContainer) return;
+            
+            articlesContainer.innerHTML = '';
+            
+            if (articlesToDisplay.length === 0) {
+                articlesContainer.innerHTML = '<p>No articles found. Be the first to write one!</p>';
+                return;
+            }
+            
+            articlesToDisplay.forEach(article => {
+                const articleCard = document.createElement('div');
+                articleCard.className = 'article-card';
+                
+                const formattedDate = new Date(article.date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                
+                articleCard.innerHTML = `
+                    <div class="article-image" style="background-image: url('${article.image}')"></div>
+                    <div class="article-content">
+                        <h3>${article.title}</h3>
+                        <p class="article-excerpt">${article.excerpt}</p>
+                        <div class="article-meta">
+                            <span>${formattedDate}</span>
+                            <a href="#" class="read-more" data-id="${article.id}">Read More</a>
+                        </div>
+                        <div class="article-tags">
+                            ${article.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+                
+                articlesContainer.appendChild(articleCard);
+            });
+            
+            // Add event listeners to read more buttons
+            document.querySelectorAll('.read-more').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const articleId = parseInt(button.getAttribute('data-id'));
+                    loadArticlePage(articleId);
+                });
+            });
+        }
+
+        // Load an individual article page
+        function loadArticlePage(articleId) {
+            currentPage = 'article';
+            
+            const article = articles.find(art => art.id === articleId);
+            
+            if (!article) {
+                mainContent.innerHTML = `
+                    <section class="article-page">
+                        <div class="container">
+                            <div class="article-not-found">
+                                <h2>Article Not Found</h2>
+                                <p>The article you're looking for doesn't exist or may have been removed.</p>
+                                <a href="#" class="btn" id="back-to-articles">Browse Articles</a>
+                            </div>
+                        </div>
+                    </section>
+                `;
+                
+                document.getElementById('back-to-articles')?.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    loadHomePage();
+                });
+                
+                return;
+            }
+            
+            document.title = `${article.title} | Logifact`;
+            
+            const formattedDate = new Date(article.date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            
+            mainContent.innerHTML = `
+                <section class="article-page">
+                    <div class="container">
+                        <article class="article-full">
+                            <div class="article-header">
+                                <h1>${article.title}</h1>
+                                <div class="article-meta">
+                                    <span>Published on ${formattedDate}</span>
+                                    <div class="article-tags">
+                                        ${article.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                                    </div>
+                                </div>
+                                <div class="article-image" style="background-image: url('${article.image}')"></div>
+                            </div>
+                            <div class="article-body">
+                                ${article.content}
+                            </div>
+                            <div class="article-actions">
+                                <a href="#" class="btn" id="back-to-articles">Back to Articles</a>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+            `;
+            
+            document.getElementById('back-to-articles')?.addEventListener('click', (e) => {
+                e.preventDefault();
+                loadHomePage();
+            });
+        }
+
+        // Open the article creation modal
+        function openArticleModal() {
+            articleModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close the article creation modal
+        function closeArticleModal() {
+            articleModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Handle article form submission
+        function handleArticleSubmit(e) {
+            e.preventDefault();
+            
+            const title = document.getElementById('article-title').value;
+            const excerpt = document.getElementById('article-excerpt').value;
+            const content = document.getElementById('article-content').value;
+            const tags = document.getElementById('article-tags').value
+                .split(',')
+                .map(tag => tag.trim())
+                .filter(tag => tag !== '');
+            
+            const newArticle = {
+                id: Date.now(),
+                title,
+                excerpt,
+                content: `<p>${content.replace(/\n\n/g, '</p><p>')}</p>`,
+                date: new Date().toISOString().split('T')[0],
+                tags,
+                image: `https://source.unsplash.com/random/600x400/?${tags[0] || 'article'}`
+            };
+            
+            articles.unshift(newArticle);
+            localStorage.setItem('logifact-articles', JSON.stringify(articles));
+            
+            if (currentPage === 'home') {
+                displayArticles(articles);
+            }
+            
+            articleForm.reset();
+            closeArticleModal();
+        }
+
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            hamburger.classList.toggle('active');
+            nav.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
